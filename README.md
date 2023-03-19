@@ -60,7 +60,7 @@ developing your own process.
 
 ## Your Notes Here
 
-- Add a new toy when the toy form is submitted
+- Update the number of likes for a toy
 
   - How I debugged:
         
@@ -73,12 +73,33 @@ developing your own process.
       ```console
         Uncaught (in promise) SyntaxError: Unexpected end of JSON input
       ```
-      - Hence, I checked the #update controller action and added a render response as follows: render json: toy, status: :accepted.
+      - Hence, I checked the #update controller action and added a render response as follows:
+      ```console
+        render json: toy, status: :accepted.
+      ```
 
-- Update the number of likes for a toy
+- Add a new toy when the toy form is submitted
 
   - How I debugged:
+      - When the new toy form is submitted, the following error occurs:
+      ```console
+        500 Internal Server Error
+        NameError (uninitialized constant ToysController::Toys):
+        app/controllers/toys_controller.rb:10:in `create'
+      ```
+      - There was a typo in the controller #create action. Hence, I corrected the Toy.create typo.
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+      - When the Donate to GoodWill button is clicked, the following error occurs in the server logs:
+      ```console
+        ActionController::RoutingError (No route matches [DELETE] "/toys/1")
+      ```
+      - The #destroy controller action was already defined in the ToysController, but there was no route for the action.
+      - Hence, I added :destroy to the resources method in routes.rb file.
+      ```console
+        resources :toys, only: [:index, :create, :update, :destroy]
+      ```
+    
+
