@@ -63,12 +63,13 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
-        -When the like button is clicked, the following error occurs:
-            -Unpermitted parameter: :id
-            -Completed 204 No Content
-        -On checking the browser console, the following error occurs:
-            -Uncaught (in promise) SyntaxError: Unexpected end of JSON input
-        -Hence, I checked the #update controller action and added a render response as follows: render json: toy, status: :accepted.
+        
+      - When the like button is clicked, the following error occurs:
+          -Unpermitted parameter: :id
+          -Completed 204 No Content
+      - On checking the browser console, the following error occurs:
+          -Uncaught (in promise) SyntaxError: Unexpected end of JSON input
+      - Hence, I checked the #update controller action and added a render response as follows: render json: toy, status: :accepted.
 
 - Update the number of likes for a toy
 
